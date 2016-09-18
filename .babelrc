@@ -1,0 +1,9 @@
+{
+  "presets": ["latest", "stage-0", "babili"],
+  "plugins": [["transform-es2015-modules-umd", {
+  	"globals": {
+  		"index": "PutStuffOnWebsite"
+  	},
+  	exactGlobals: true
+  }]]
+}
