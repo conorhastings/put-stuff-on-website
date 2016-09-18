@@ -43,6 +43,7 @@ function createElement({ tagName, props = {}, children = [], parent }) {
 }
 
 function render(component, selector) {
+  document.querySelector(selector).innerHTML = "";
   document.querySelector(selector).appendChild(createElement(component));
 }
 
