@@ -20,9 +20,13 @@ function createStore({ updater, state, subscribers = [] }) {
   return { getState, subscribe, dispatch };
 }
 
+let psowId = 0;
+
 function createElement({ tagName, props = {}, children = [], parent }) {
   children = !Array.isArray(children) ? [children] : children;
   const element = document.createElement(tagName);
+  element.dataset.psowId = psowId;
+  psowId++;
   Object.keys(props).forEach(prop => {
     element[prop] = props[prop];
   });
@@ -43,8 +47,13 @@ function createElement({ tagName, props = {}, children = [], parent }) {
 }
 
 function render(component, selector) {
+  const activeElement = document.activeElement;
+  const activeId = activeElement.dataset.psowId;
+  psowId = 0;
   document.querySelector(selector).innerHTML = "";
   document.querySelector(selector).appendChild(createElement(component));
+  const dataSelector = `[data-psow-id="${activeId}"]`;
+  document.querySelector(dataSelector) && document.querySelector(dataSelector).focus();
 }
 
 export { createStore, createElement, render };
