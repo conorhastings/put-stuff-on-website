@@ -28,7 +28,14 @@ function createElement({ tagName, props = {}, children = [], parent }) {
   element.dataset.psowId = psowId;
   psowId++;
   Object.keys(props).forEach(prop => {
-    element[prop] = props[prop];
+    if (prop === "style") {
+      Object.keys(props[prop]).forEach(attr => {
+        element.style[attr] = props[prop][attr];
+      });
+    }
+    else {
+      element[prop] = props[prop];
+    }
   });
   if (parent) {
     parent.appendChild(element);
@@ -57,4 +64,3 @@ function render(component, selector) {
 }
 
 export { createStore, createElement, render };
-
