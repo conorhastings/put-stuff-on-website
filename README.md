@@ -52,3 +52,6 @@ function App({ whatShouldIDoWithThis }) {
   render(App({ whatShouldIDoWith: initialState.whatShouldIDoWithThis }), #root);
 } 
 ```
+
+### Projects Using This
+* - https://github.com/conorhastings/basic-bus (note this is my project, you still shouldn't use this)
